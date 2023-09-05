@@ -36,7 +36,7 @@ export const AppProvider = ({ children }) => {
       });
   }, []);
 
-  //   console.log(movies);
+    // console.log(movies);
   return (
     <AppContext.Provider value={{ movies, loading, error, liked, setLiked }}>
       {children}
