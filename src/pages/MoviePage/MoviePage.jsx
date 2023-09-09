@@ -2,7 +2,6 @@ import MovieCard from "../../components/MovieCard/MovieCard";
 import { useGlobalContext } from "../../context/Context";
 import Shimmer from "../../components/Shimmer/Shimmer";
 
-
 const MoviePage = () => {
   const { movies, loading, setLiked, liked } = useGlobalContext();
 

@@ -1,5 +1,3 @@
-import React from "react";
-
 function Shimmer() {
   return (
     <div className="flex flex-wrap items-center justify-center py-5">

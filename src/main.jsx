@@ -5,7 +5,7 @@ import "./index.css";
 import { AppProvider } from "./context/Context.jsx";
 import { Theme } from "@radix-ui/themes";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import Favorites from "./components/Favorites/Favorites.jsx";
+import Favorites from "./pages/Favorites/Favorites.jsx";
 import ErrorPage from "./components/Error/Error.jsx";
 import MoviePage from "./pages/MoviePage/MoviePage.jsx";
 
