@@ -1,6 +1,6 @@
 function Shimmer() {
   return (
-    <div className="flex flex-wrap items-center justify-center py-5">
+    <div className="flex flex-wrap items-center justify-center my-5">
       {Array(20)
         .fill()
         .map((item, index) => {

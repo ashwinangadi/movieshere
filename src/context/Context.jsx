@@ -1,44 +1,34 @@
 import React, { useContext, useEffect, useState } from "react";
+import axiosFetch from "../api/axios";
 
 export const AppContext = React.createContext();
 
 export const AppProvider = ({ children }) => {
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
   const [liked, setLiked] = useState([]);
-
-  const options = {
-    method: "GET",
-    headers: {
-      accept: "application/json",
-      Authorization:
-        "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1NGY2MzFlZTgwMjEzOGMyOGQ1YTRlMWIyZTk4YTg5ZSIsInN1YiI6IjY0ZjQ4MDQ2NWYyYjhkMDBlMTJjMTRiNiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.bs7_5xibU50GGgeClx9xG7T-liyB5v_r4EMSv4Us5do",
-    },
-  };
+  const [showModal, setShowModal] = useState(false);
+  const [movieID, setMovieID] = useState([])
 
   useEffect(() => {
-    fetch("https://api.themoviedb.org/3/discover/movie", options)
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        }
-        throw response;
-      })
-      .then((response) => setMovies(response))
-      .catch((error) => {
-        console.error("Error fetching data: ", error);
-        setError(error);
-      })
-      .finally(() => {
-        setLoading(false);
-        console.log("fetched");
-      });
+    const fetchMovies = async () => {
+      const url = "trending/movie/day";
+      try {
+        const response = await axiosFetch.get(url);
+        setMovies(response.data);
+      } catch {
+        console.log("error");
+      }
+      setLoading(false);
+    };
+    fetchMovies();
   }, []);
 
-  // console.log(movies);
+  
   return (
-    <AppContext.Provider value={{ movies, loading, error, liked, setLiked }}>
+    <AppContext.Provider
+      value={{ movies, loading, liked, setLiked, showModal, setShowModal, movieID, setMovieID }}
+    >
       {children}
     </AppContext.Provider>
   );

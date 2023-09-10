@@ -1,7 +1,15 @@
 import Heart from "../Icons/Heart";
 import Cross from "../Icons/Cross";
+import { useGlobalContext } from "../../context/Context";
 
-function MovieCard({ movies, setLiked, liked, svg }) {
+function MovieCard({ movies, svg }) {
+  const {
+    setShowModal,
+    setLiked,
+    liked,
+   setMovieID,
+  } = useGlobalContext();
+
   const addToFav = (id) => {
     if (svg === "like") {
       liked.some((item) => item.id === id)
@@ -23,19 +31,33 @@ function MovieCard({ movies, setLiked, liked, svg }) {
           liked.some((item) => item.id === movies.id)
             ? "fill-red-500"
             : "fill-gray-100"
-        } absolute hover:fill-rose-500 top-2 right-2 cursor-pointer ease-in-out hover:-translate-y-1 hover:scale-110 duration-300`}
+        } absolute hover:fill-rose-500 top-3 right-3 cursor-pointer ease-in-out hover:-translate-y-1 hover:scale-110 duration-300`}
         onClick={(e) => {
           e.stopPropagation();
           addToFav(movies.id);
         }}
       >
-        {svg === "like" ? <Heart /> : <Cross />}
+        {svg === "like" ? (
+          <Heart />
+        ) : (
+          <Cross className="bg-gray-100 rounded-full w-8 h-8" />
+        )}
       </div>
       <img
         src={`https://image.tmdb.org/t/p/w500` + `${movies.poster_path}`}
-        className="h-[300px] w-[270px] md:w-[300px] md:h-[400px] rounded-xl"
+        className="h-[300px] w-[270px] md:w-[300px] md:h-[400px] rounded-t-xl"
+        onClick={() => {
+          setShowModal(true);
+          setMovieID(movies.id);
+        }}
       />
-      <p className="text-xl md:text-2xl font-semibold h-[60px] md:h-[80px] mt-2">
+      <p
+        className="text-xl md:text-2xl font-semibold h-[60px] md:h-[80px] mt-2"
+        onClick={() => {
+          setShowModal(true);
+          setMovieID(movies.id);
+        }}
+      >
         {movies.original_title}
       </p>
     </div>
