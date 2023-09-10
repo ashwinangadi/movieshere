@@ -1,19 +1,19 @@
 import Heart from "../Icons/Heart";
 import Cross from "../Icons/Cross";
 import { useGlobalContext } from "../../context/Context";
+import noImage from "../../assets/noImage.png"
 
 function MovieCard({ movies, svg }) {
-  const {
-    setShowModal,
-    setLiked,
-    liked,
-   setMovieID,
-  } = useGlobalContext();
+  const { setShowModal, setLiked, liked, setMovieID } = useGlobalContext();
 
   const addToFav = (id) => {
     if (svg === "like") {
       liked.some((item) => item.id === id)
-        ? alert("Its already your favourite!")
+        ? setLiked(
+            liked.filter((item) => {
+              return item.id !== id;
+            })
+          )
         : setLiked([...liked, movies]);
     } else {
       setLiked(
@@ -44,7 +44,7 @@ function MovieCard({ movies, svg }) {
         )}
       </div>
       <img
-        src={`https://image.tmdb.org/t/p/w500` + `${movies.poster_path}`}
+        src={movies.poster_path !== null ?`https://image.tmdb.org/t/p/w500/${movies.poster_path}`: noImage}
         className="h-[300px] w-[270px] md:w-[300px] md:h-[400px] rounded-t-xl"
         onClick={() => {
           setShowModal(true);

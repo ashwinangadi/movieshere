@@ -1,11 +1,16 @@
 import React from "react";
+import noImage from "../../assets/noImage.png";
 
-const CastCard = ({ cast } ) => {
+const CastCard = ({ cast }) => {
   const { name, profile_path, character } = cast;
   return (
     <div className="text-center relative w-[100px] h-[150px] shadow-xl flex flex-col justify-center items-center ">
       <img
-        src={`https://image.tmdb.org/t/p/original` + `${profile_path}`}
+        src={
+          profile_path !== null
+            ? `https://image.tmdb.org/t/p/w500/${profile_path}`
+            : noImage
+        }
         alt="Cast"
         className="h-[100px] w-[80px] text-center"
       />

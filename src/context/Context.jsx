@@ -8,13 +8,16 @@ export const AppProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [liked, setLiked] = useState([]);
   const [showModal, setShowModal] = useState(false);
-  const [movieID, setMovieID] = useState([])
+  const [movieID, setMovieID] = useState([]);
+  const [searchedMovie, setSearchedMovie] = useState([]);
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
     const fetchMovies = async () => {
       const url = "trending/movie/day";
+      const param = {};
       try {
-        const response = await axiosFetch.get(url);
+        const response = await axiosFetch(url, param);
         setMovies(response.data);
       } catch {
         console.log("error");
@@ -24,10 +27,22 @@ export const AppProvider = ({ children }) => {
     fetchMovies();
   }, []);
 
-  
   return (
     <AppContext.Provider
-      value={{ movies, loading, liked, setLiked, showModal, setShowModal, movieID, setMovieID }}
+      value={{
+        movies,
+        loading,
+        liked,
+        setLiked,
+        showModal,
+        setShowModal,
+        movieID,
+        setMovieID,
+        searchedMovie,
+        setSearchedMovie,
+        search,
+        setSearch,
+      }}
     >
       {children}
     </AppContext.Provider>

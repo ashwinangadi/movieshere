@@ -16,7 +16,7 @@ const Cast = () => {
     const fetchCast = async () => {
       const url = `movie/${movieID}/credits`;
       try {
-        const response = await axiosFetch.get(url);
+        const response = await axiosFetch(url);
         setMovieCast(response.data.cast);
       } catch {
         console.log("error");
@@ -24,28 +24,16 @@ const Cast = () => {
     };
     fetchCast();
   }, [movieID]);
-  console.log("cast", movieCast);
 
   return (
     <div className="flex px-2 min-w-[100px] max-w-full">
       <Swiper
-        slidesPerView={2}
+        slidesPerView={movieCast.length <= 6 ? movieCast.length : 5}
         spaceBetween={10}
         freeMode={true}
         autoplay={{
           delay: 1000,
           disableOnInteraction: false,
-        }}
-        breakpoints={{
-          640: {
-            slidesPerView: 3,
-          },
-          768: {
-            slidesPerView: 4,
-          },
-          1024: {
-            slidesPerView: 6,
-          },
         }}
         modules={[FreeMode, Autoplay]}
         className="mySwiper rounded-bl-lg"

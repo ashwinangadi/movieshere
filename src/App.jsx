@@ -6,7 +6,7 @@ import Modal from "./components/Modal/Modal";
 import { useGlobalContext } from "./context/Context";
 
 function App() {
-  const {  showModal, setShowModal  } = useGlobalContext();
+  const { showModal } = useGlobalContext();
 
   return (
     <>
