@@ -1,4 +1,3 @@
-import React from "react";
 import noImage from "../../assets/noImage.png";
 
 const CastCard = ({ cast }) => {

@@ -1,7 +1,7 @@
 import Heart from "../Icons/Heart";
 import Cross from "../Icons/Cross";
 import { useGlobalContext } from "../../context/Context";
-import noImage from "../../assets/noImage.png"
+import noImage from "../../assets/noImage.png";
 
 function MovieCard({ movies, svg }) {
   const { setShowModal, setLiked, liked, setMovieID } = useGlobalContext();
@@ -44,7 +44,11 @@ function MovieCard({ movies, svg }) {
         )}
       </div>
       <img
-        src={movies.poster_path !== null ?`https://image.tmdb.org/t/p/w500/${movies.poster_path}`: noImage}
+        src={
+          movies.poster_path !== null
+            ? `https://image.tmdb.org/t/p/w500/${movies.poster_path}`
+            : noImage
+        }
         className="h-[300px] w-[270px] md:w-[300px] md:h-[400px] rounded-t-xl"
         onClick={() => {
           setShowModal(true);

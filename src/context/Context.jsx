@@ -11,6 +11,7 @@ export const AppProvider = ({ children }) => {
   const [movieID, setMovieID] = useState([]);
   const [searchedMovie, setSearchedMovie] = useState([]);
   const [search, setSearch] = useState("");
+  const [likedGenres, setLikedGenres] = useState([]);
 
   useEffect(() => {
     const fetchMovies = async () => {
@@ -27,6 +28,17 @@ export const AppProvider = ({ children }) => {
     fetchMovies();
   }, []);
 
+  useEffect(() => {
+    const createLikedGenres = () => {
+      const array = [];
+      liked.map((item) => {
+        array.push(...item.genre_ids);
+      });
+      setLikedGenres(array);
+    };
+    createLikedGenres();
+  }, [liked]);
+
   return (
     <AppContext.Provider
       value={{
@@ -42,6 +54,7 @@ export const AppProvider = ({ children }) => {
         setSearchedMovie,
         search,
         setSearch,
+        likedGenres,
       }}
     >
       {children}

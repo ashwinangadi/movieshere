@@ -1,4 +1,3 @@
-// import MovieCard from "../../components/Cards/MovieCard";
 import MovieCard from "../../components/MovieCard/MovieCard";
 import { useGlobalContext } from "../../context/Context";
 import Shimmer from "../../components/Shimmer/Shimmer";
@@ -6,8 +5,7 @@ import SearchBar from "../../components/SearchBar/SearchBar";
 import Recomendation from "../../components/Recomendation/Recomendation";
 
 const MoviePage = () => {
-  const { movies, loading, setLiked, liked, search, searchedMovie } =
-    useGlobalContext();
+  const { movies, loading, search, searchedMovie } = useGlobalContext();
   if (loading) {
     return <Shimmer />;
   }
@@ -19,7 +17,7 @@ const MoviePage = () => {
       {!search.length > 0 ? (
         <>
           <div className="flex flex-col my-5">
-            <h1 className="text-2xl font-semibold text-start ms-14  md:ms-24 lg:ms-32">
+            <h1 className="text-3xl font-semibold text-start ms-14  md:ms-24 lg:ms-32">
               Trending Movies
             </h1>
             <div className="flex flex-wrap items-center justify-center">

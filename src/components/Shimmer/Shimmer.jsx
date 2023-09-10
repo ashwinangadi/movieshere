@@ -5,7 +5,10 @@ function Shimmer() {
         .fill()
         .map((item, index) => {
           return (
-            <div key={index} className=" flex p-2 m-3 rounded-xl shadow-lg w-[316px] h-[400px] bg-slate-50"></div>
+            <div
+              key={index}
+              className=" flex p-2 m-3 rounded-xl shadow-lg w-[316px] h-[400px] bg-slate-50"
+            ></div>
           );
         })}
     </div>

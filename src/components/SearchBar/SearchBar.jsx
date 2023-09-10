@@ -5,8 +5,7 @@ import axiosFetch from "../../api/axios";
 import { useGlobalContext } from "../../context/Context";
 
 const SearchBar = () => {
-  const { searchedMovie, setSearchedMovie, search, setSearch } =
-    useGlobalContext();
+  const { setSearchedMovie, search, setSearch } = useGlobalContext();
 
   const [inputValue, setInputValue] = useState("");
 
@@ -16,7 +15,6 @@ const SearchBar = () => {
       const param = { query: search };
       try {
         const response = await axiosFetch(url, param);
-        console.log(response.data);
         setSearchedMovie(response.data);
       } catch {
         console.log("error");
@@ -27,11 +25,9 @@ const SearchBar = () => {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      // Set the debounced value after a delay (e.g., 500 milliseconds)
       setSearch(inputValue);
-    }, 500); // Adjust the debounce delay as needed
+    }, 500);
 
-    // Clear the timer if the input value changes before the delay expires
     return () => {
       clearTimeout(timer);
     };

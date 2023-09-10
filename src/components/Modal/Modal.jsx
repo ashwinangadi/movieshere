@@ -1,15 +1,13 @@
-import React, { useEffect, useState } from "react";
 import Cross from "../Icons/Cross";
 import { useGlobalContext } from "../../context/Context";
 import axiosFetch from "../../api/axios";
 import { minutesToHours } from "../../utility";
-import ModalShimmer from "../Shimmer/ModalShimmer";
-import CastCard from "../Cast/CastCard";
 import Cast from "../Cast/Cast";
 import noImage from "../../assets/noImage.png";
+import { useEffect, useState } from "react";
 
 const Modal = () => {
-  const { setShowModal, movieID, setLoading, loading } = useGlobalContext();
+  const { setShowModal, movieID } = useGlobalContext();
   const [movieModal, setMovieModal] = useState([]);
 
   const { poster_path, title, release_date, overview, genres, runtime } =
@@ -28,9 +26,8 @@ const Modal = () => {
     fetchMovies();
   }, [movieID]);
 
-  // console.log("cast", movieCast);
   return (
-    <section className="absolute">
+    <section className="absolute z-50">
       <div
         className="fixed bg-gray-950/60 inset-0 flex items-center justify-center px-3"
         // onClick={() => setShowModal(false)}
